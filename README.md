@@ -2,18 +2,18 @@
 
 # LAB EXCERCISES 3
 ```
-1. Write a program in C to create a single linked list of more than one node and print it.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program1.c'>Here</a>
-2. Write a program in C to create a single linked list of more than one node and display
++Write a program in C to create a single linked list of more than one node and print it.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program1.c'>Here</a>
++Write a program in C to create a single linked list of more than one node and display
 total number of nodes.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program2.c'>Here</a>
-3. Write a program in C to create a single linked list of more than one node and insert a
++Write a program in C to create a single linked list of more than one node and insert a
 node at (i) first position (ii) last position and (iii) specified location<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program3.c'>Here</a>
-4. Write a program in C to create a single linked list of more than one node and delete
++Write a program in C to create a single linked list of more than one node and delete
 an element at (i) first position (ii) last position and (iii) at specified position.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program4.c'>Here</a>
-5. Write a program in C to create a single linked list of more than one node and search a
++Write a program in C to create a single linked list of more than one node and search a
 particular key element.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program5.c'>Here</a>
-6. Write a program in C to create a single linked list and create a copy of list.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program6.c'>Here</a>
-7. Write a program in C to create a single linked list of more than one node and sort all
++Write a program in C to create a single linked list and create a copy of list.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program6.c'>Here</a>
++Write a program in C to create a single linked list of more than one node and sort all
 data element in the list.
-8. Write a program in C to create two single linked lists of more than one node and
++Write a program in C to create two single linked lists of more than one node and
 concatenate the list.<a href='https://github.com/yankit293/data-structure-in-c-program/blob/main/program8.c'>Here</a>
 ```
