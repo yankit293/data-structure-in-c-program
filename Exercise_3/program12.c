@@ -1,11 +1,12 @@
-//Write a program in C to create a single linked list of more than one node and delete
-//an element at (i) first position (ii) last position and (iii) at specified position.
+//Write a program in C to create a doubly linked list of more than one node and delete
+//an element from (i) first position, (ii) last position and (iii) specified position.
 
 #include<stdio.h>
 #include<stdlib.h>
  struct node{
         int data;
         struct node *next;
+        struct node *prev;
     };
     typedef struct node * nodeptr;
     nodeptr headNode, currentNode, tmpNode;
@@ -21,9 +22,12 @@ int main(){
         currentNode = getNode();
         if(i==0){
             headNode = tmpNode = currentNode;
+            headNode->prev = NULL;
         }
         else{
+
             tmpNode->next = currentNode;
+            currentNode->prev = tmpNode;
             tmpNode = currentNode;
         }
     }
@@ -42,6 +46,7 @@ int main(){
     if(ch == 1){
         tmpNode = currentNode = headNode;
         tmpNode = tmpNode->next;
+        tmpNode->prev = NULL;
         headNode = tmpNode;
         free(currentNode);
         printList(tmpNode);
@@ -61,18 +66,29 @@ int main(){
     //Delete at any position
     else if(ch == 3){
         tmpNode  = headNode;
-        printf("Enter element which you want to delete except First Or last Node\n");
+        printf("Enter element which you want to delete\n");
         scanf("%d", &elm);
         while(tmpNode->next!=NULL){
             if(tmpNode->data == elm)
                 break;
-            currentNode = tmpNode;
             tmpNode = tmpNode->next;
             
-        } 
-        currentNode->next = tmpNode->next;
-        free(tmpNode);
-        printList(headNode);
+        }
+        if(tmpNode == headNode){
+            printf("Select 1 option from Menu\n");
+            goto menu;
+        }
+        else if(tmpNode->next == NULL){
+            printf("Select 2nd Option from Menu\n");
+            goto menu;
+        }
+        else{
+            tmpNode->next->prev = tmpNode->prev;
+            tmpNode->prev->next = tmpNode->next;
+            free(tmpNode);
+            printList(headNode);
+        }
+        
     }
     //terminate program..
     else if(ch == 4){

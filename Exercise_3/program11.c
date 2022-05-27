@@ -1,11 +1,11 @@
-//Write a program in C to create a single linked list of more than one node and delete
-//an element at (i) first position (ii) last position and (iii) at specified position.
+
 
 #include<stdio.h>
 #include<stdlib.h>
  struct node{
         int data;
         struct node *next;
+        struct node *prev; 
     };
     typedef struct node * nodeptr;
     nodeptr headNode, currentNode, tmpNode;
@@ -21,9 +21,11 @@ int main(){
         currentNode = getNode();
         if(i==0){
             headNode = tmpNode = currentNode;
+            headNode->prev = NULL;
         }
         else{
             tmpNode->next = currentNode;
+            currentNode->prev = tmpNode;
             tmpNode = currentNode;
         }
     }
@@ -31,57 +33,60 @@ int main(){
     tmpNode = headNode;
     printList(tmpNode);
     menu:
-    printf("\n1. Delete node at first position\n");
-    printf("2. Delete Node at last position\n");
-    printf("3. Delete node at any position\n");
+    printf("\n1. Insert a Node at 1st position.\n");
+    printf("2. Insert a node at last Position.\n");
+    printf("3. Insert a node at any postion\n");
     printf("4. Exit\n");
     scanf("%d", &ch);
 
-    
-    //Delete node at fisrt position..
+    //insert node at first position...
     if(ch == 1){
-        tmpNode = currentNode = headNode;
-        tmpNode = tmpNode->next;
-        headNode = tmpNode;
-        free(currentNode);
+        currentNode = getNode();
+        currentNode->prev = NULL;
+        currentNode->next = headNode;
+        headNode = tmpNode = currentNode;
         printList(tmpNode);
     }
-    //Delete node at last position..
+    //insert node at last position..
     else if(ch == 2){
-        tmpNode = currentNode = headNode;
+        tmpNode = headNode;
         while(tmpNode->next!=NULL){
-            currentNode = tmpNode;
             tmpNode = tmpNode->next;
         }
-        free(tmpNode);
+        currentNode = getNode();
         currentNode->next = NULL;
-        printList(headNode);
-
+        currentNode->prev = tmpNode;
+        tmpNode->next = currentNode;
+        tmpNode = headNode;
+        printList(tmpNode);
     }
-    //Delete at any position
-    else if(ch == 3){
-        tmpNode  = headNode;
-        printf("Enter element which you want to delete except First Or last Node\n");
+    //Insert node at any location...
+    else if(ch ==3){
+        tmpNode = headNode;
+        printf("Enter element after which you want to insert node\n");
         scanf("%d", &elm);
         while(tmpNode->next!=NULL){
             if(tmpNode->data == elm)
                 break;
-            currentNode = tmpNode;
             tmpNode = tmpNode->next;
-            
         } 
+        currentNode = getNode();
         currentNode->next = tmpNode->next;
-        free(tmpNode);
-        printList(headNode);
+        currentNode->prev = tmpNode;
+        tmpNode->next = tmpNode->next->prev = currentNode;
+        tmpNode = headNode;
+        printList(tmpNode);
     }
+   
     //terminate program..
     else if(ch == 4){
         free(headNode);
         exit(0);
-    }   
+    }
     else
         printf("Invalid Choice\n");
     goto menu;
+    free(headNode);
     return 0;
     
 }
