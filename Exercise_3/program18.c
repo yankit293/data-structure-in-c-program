@@ -1,11 +1,11 @@
-//Write a program in C to create a circular linked list of more than one node and insert
-//a node at (i) first, (ii) last and (iii) specified location 
+
+
 
 #include<stdio.h>
 #include<stdlib.h>
  struct node{
         int data;
-        struct node *next;
+        struct node *next, *prev;
     };
     typedef struct node * nodeptr;
     nodeptr headNode, currentNode, tmpNode;
@@ -21,19 +21,21 @@ int main(){
         currentNode = getNode();
         if(i==0){
             headNode = tmpNode = currentNode;
+            headNode->prev = headNode;
         }
         else{
             tmpNode->next = currentNode;
+            currentNode->prev = tmpNode;
             tmpNode = currentNode;
         }
     }
     tmpNode->next = headNode;
-    tmpNode = headNode;
-    printList(tmpNode);
+    headNode->prev = tmpNode;
+    printList(headNode);
     menu:
-    printf("\n1. Insert a Node at 1st position in Circular single linked list.\n");
-    printf("2. Insert a node at last Position in Circular single linked list.\n");
-    printf("3. Insert a node at any postion in Circular single linked list.\n");
+    printf("\n1. Insert a Node at 1st position in Circular doubly linked list.\n");
+    printf("2. Insert a node at last Position in Circular doubly linked list.\n");
+    printf("3. Insert a node at any postion in Circular doubly linked list.\n");
     printf("4. Exit\n");
     scanf("%d", &ch);
 
@@ -43,6 +45,7 @@ int main(){
             tmpNode = tmpNode->next;
         }
         currentNode = getNode();
+        currentNode->prev = tmpNode;
         currentNode->next = headNode;
         tmpNode-> next = currentNode;
         headNode = currentNode;
@@ -56,6 +59,7 @@ int main(){
         }
         currentNode = getNode();
         currentNode->next = headNode;
+        currentNode->prev = tmpNode;
         tmpNode->next = currentNode;
         printList(headNode);
     }
@@ -71,6 +75,7 @@ int main(){
         } 
         currentNode = getNode();
         currentNode->next = tmpNode->next;
+        currentNode->prev = tmpNode;
         tmpNode->next = currentNode;
         printList(headNode);
     }

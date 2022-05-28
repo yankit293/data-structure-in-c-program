@@ -1,5 +1,5 @@
-//Write a program in C to create a circular linked list of more than one node and insert
-//a node at (i) first, (ii) last and (iii) specified location 
+//Write a program in C to create a circular linked list of more than one node and delete
+//an element from (i) first, (ii) last and (iii) specified location 
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -28,62 +28,62 @@ int main(){
         }
     }
     tmpNode->next = headNode;
-    tmpNode = headNode;
-    printList(tmpNode);
+    printList(headNode);
     menu:
-    printf("\n1. Insert a Node at 1st position in Circular single linked list.\n");
-    printf("2. Insert a node at last Position in Circular single linked list.\n");
-    printf("3. Insert a node at any postion in Circular single linked list.\n");
+    printf("\n1. Delete node at first position\n");
+    printf("2. Delete Node at last position\n");
+    printf("3. Delete node at any position\n");
     printf("4. Exit\n");
     scanf("%d", &ch);
 
-    //insert node at first position...
+    
+    //Delete node at fisrt position..
     if(ch == 1){
+        tmpNode = currentNode = headNode;
         while(tmpNode->next!=headNode){
             tmpNode = tmpNode->next;
         }
-        currentNode = getNode();
-        currentNode->next = headNode;
-        tmpNode-> next = currentNode;
-        headNode = currentNode;
+        headNode = currentNode->next;
+        tmpNode->next = headNode;
+        free(currentNode);
         printList(headNode);
     }
-    //insert node at last position..
+    //Delete node at last position..
     else if(ch == 2){
-        tmpNode = headNode;
+        tmpNode = currentNode = headNode;
         while(tmpNode->next!=headNode){
+            currentNode = tmpNode;
             tmpNode = tmpNode->next;
         }
-        currentNode = getNode();
         currentNode->next = headNode;
-        tmpNode->next = currentNode;
+        free(tmpNode);
         printList(headNode);
+
     }
-    //Insert node at any location...
-    else if(ch ==3){
-        tmpNode = headNode;
-        printf("Enter element after which you want to insert node\n");
+    //Delete at any position
+    else if(ch == 3){
+        tmpNode  = headNode;
+        printf("Enter element which you want to delete except First Or last Node\n");
         scanf("%d", &elm);
         while(tmpNode->next!=NULL){
             if(tmpNode->data == elm)
                 break;
+            currentNode = tmpNode;
             tmpNode = tmpNode->next;
+            
         } 
-        currentNode = getNode();
         currentNode->next = tmpNode->next;
-        tmpNode->next = currentNode;
+        free(tmpNode);
         printList(headNode);
     }
-   
     //terminate program..
     else if(ch == 4){
         free(headNode);
         exit(0);
-    }
+    }   
     else
         printf("Invalid Choice\n");
     goto menu;
-    free(headNode);
     return 0;
     
 }
